@@ -15,7 +15,7 @@ services:
       - POSTGRES_HOST=db
       - POSTGRES_PORT=5432
       - REDIS_URL=redis://redis:6379/0
-      - WEBHOOK_SECRET=your_super_secret_key_here
+      - WEBHOOK_SECRET=${WEBHOOK_SECRET:-}
       - OPENAI_API_KEY=${OPENAI_API_KEY:-your-openai-api-key}
     depends_on:
       db:

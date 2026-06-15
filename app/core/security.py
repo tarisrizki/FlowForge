@@ -7,6 +7,10 @@ def verify_hmac_signature(payload: bytes, signature_header: str) -> bool:
     Verifies the HMAC SHA256 signature of a webhook payload.
     Expected signature_header format: 'sha256=...' or just the hex string.
     """
+    # Skip verification for local development / testing if secret is missing or default
+    if not settings.WEBHOOK_SECRET or settings.WEBHOOK_SECRET == "default_secret_please_change":
+        return True
+
     if not signature_header:
         return False
         

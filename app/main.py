@@ -10,8 +10,7 @@ def create_app() -> FastAPI:
     app.add_exception_handler(Exception, global_exception_handler)
 
     # Register routers here
-    from app.routers import example, workflows, webhooks
-    app.include_router(example.router, prefix="/api/v1")
+    from app.routers import workflows, webhooks
     app.include_router(workflows.router, prefix="/api/v1")
     app.include_router(webhooks.router, prefix="/api/v1")
 
