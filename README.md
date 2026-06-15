@@ -15,6 +15,18 @@ graph LR
     E --> H[Generic HTTP API]
 ```
 
+## Setup & Environment Variables
+
+Untuk keamanan, **kunci API tidak boleh ditulis secara permanen ke dalam file kode atau `docker-compose.yml`**, agar tidak terekspos ke publik saat di-*push* ke GitHub.
+
+Cara yang aman untuk menjalankannya: Cukup buat sebuah file bernama `.env` di folder proyek Anda (sejajar dengan `docker-compose.yml`), lalu isi dengan baris ini:
+
+```text
+OPENAI_API_KEY=sk-kunci-api-rahasia-anda
+```
+
+Docker secara otomatis akan membaca file `.env` ini saat Anda menjalankan `docker-compose up -d`, tanpa pernah menyimpannya ke GitHub karena sudah diabaikan di `.gitignore`.
+
 ## Quickstart
 
 To run the project locally with the default seeded data, simply use docker-compose:
@@ -22,7 +34,6 @@ To run the project locally with the default seeded data, simply use docker-compo
 ```bash
 docker-compose up -d --build
 ```
-*(Make sure you have populated the `.env` file from `.env.example` first).*
 
 ## Triggering a Webhook
 
