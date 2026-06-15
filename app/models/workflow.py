@@ -29,6 +29,7 @@ class WorkflowRun(Base):
     workflow_id = Column(Integer, ForeignKey("workflows.id"), nullable=False)
     status = Column(Enum(WorkflowRunStatus), default=WorkflowRunStatus.PENDING, nullable=False)
     started_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    finished_at = Column(DateTime(timezone=True), nullable=True)
     logs = Column(String, default="")
     total_tokens = Column(Integer, default=0)
 

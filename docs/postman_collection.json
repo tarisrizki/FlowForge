@@ -128,6 +128,28 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Specific Run Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/workflows/1/runs/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workflows",
+						"1",
+						"runs",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [

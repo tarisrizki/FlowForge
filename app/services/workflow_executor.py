@@ -1,4 +1,5 @@
 import asyncio
+from datetime import datetime, timezone
 from typing import Dict, Any
 from app.core.db import AsyncSessionLocal
 from app.models.workflow import Workflow, WorkflowRun, WorkflowRunStatus
@@ -112,10 +113,12 @@ class WorkflowExecutorService:
 
                 run.status = WorkflowRunStatus.COMPLETED
                 run.logs += f"Workflow execution completed successfully. Total Tokens Used: {run.total_tokens}\n"
+                run.finished_at = datetime.now(timezone.utc)
             
             except Exception as e:
                 run.status = WorkflowRunStatus.FAILED
                 run.logs += f"Workflow failed with error: {str(e)}\n"
+                run.finished_at = datetime.now(timezone.utc)
             
             finally:
                 await session.commit()

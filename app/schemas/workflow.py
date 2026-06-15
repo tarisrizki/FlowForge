@@ -33,6 +33,7 @@ class WorkflowRunResponse(BaseModel):
     workflow_id: int
     status: WorkflowRunStatus
     started_at: datetime
+    finished_at: Optional[datetime] = None
     logs: str
     total_tokens: int
 

@@ -9,19 +9,11 @@ services:
         fromDatabase:
           name: workflow-db
           property: connectionString
-      - key: REDIS_URL
-        fromService:
-          type: redis
-          name: workflow-redis
-          property: connectionString
       - key: WEBHOOK_SECRET
         generateValue: true
       - key: OPENAI_API_KEY
         sync: false
 
-  - type: redis
-    name: workflow-redis
-    plan: free
 
 databases:
   - name: workflow-db

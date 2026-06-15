@@ -9,9 +9,6 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = "fastapi_db"
     POSTGRES_HOST: str = "db"
     POSTGRES_PORT: str = "5432"
-    
-    # Redis
-    REDIS_URL: str = "redis://redis:6379/0"
 
     # Webhook
     WEBHOOK_SECRET: str = "default_secret_please_change"

@@ -83,3 +83,10 @@ async def run_workflow(workflow_id: int, background_tasks: BackgroundTasks, db: 
     background_tasks.add_task(WorkflowExecutorService.execute_workflow, workflow.id, run.id)
 
     return BaseResponse(message="Workflow execution started in background", data=run)
+
+@router.get("/{workflow_id}/runs/{run_id}", response_model=BaseResponse[WorkflowRunResponse])
+async def get_workflow_run(workflow_id: int, run_id: int, db: AsyncSession = Depends(get_db)):
+    run = await db.get(WorkflowRun, run_id)
+    if not run or run.workflow_id != workflow_id:
+        raise HTTPException(status_code=404, detail="Workflow run not found")
+    return BaseResponse(data=run)
