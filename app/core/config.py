@@ -1,12 +1,12 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "FastAPI Project"
+    PROJECT_NAME: str = "FlowForge"
     
-    # Database
+    # Database Settings
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "postgres"
-    POSTGRES_DB: str = "fastapi_db"
+    POSTGRES_DB: str = "flowforge_db"
     POSTGRES_HOST: str = "db"
     POSTGRES_PORT: str = "5432"
 

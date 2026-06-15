@@ -17,6 +17,6 @@ services:
 
 databases:
   - name: workflow-db
-    databaseName: fastapi_db
+    databaseName: flowforge_db
     user: db_user
     plan: free
