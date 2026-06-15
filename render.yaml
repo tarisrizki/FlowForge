@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: fastapi-workflow-engine
+    env: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: workflow-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: workflow-redis
+          property: connectionString
+      - key: WEBHOOK_SECRET
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false
+
+  - type: redis
+    name: workflow-redis
+    plan: free
+
+databases:
+  - name: workflow-db
+    databaseName: fastapi_db
+    user: db_user
+    plan: free

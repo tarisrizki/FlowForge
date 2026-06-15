@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "00000000-0000-0000-0000-000000000000",
+		"name": "FastAPI Workflow Engine",
+		"description": "Demonstration collection for the intelligent AI workflow engine.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Workflows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/workflows/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workflows",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Webhook (Lead Triage)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Hub-Signature-256",
+						"value": "sha256=MOCK_SIGNATURE",
+						"description": "Replace with valid HMAC signature in production if WEBHOOK_SECRET is set"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"message\": \"I am very interested in buying your enterprise plan right now! Please contact me.\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/webhooks/1/trigger",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"webhooks",
+						"1",
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Webhook (Ticket Summary)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"angry_user@test.com\",\n    \"issue_description\": \"The app keeps crashing when I try to upload my profile picture. I have tried 5 times and it's so frustrating!\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/webhooks/2/trigger",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"webhooks",
+						"2",
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Workflow Runs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/workflows/1/runs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workflows",
+						"1",
+						"runs"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
